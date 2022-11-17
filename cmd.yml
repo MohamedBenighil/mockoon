@@ -1,0 +1,7 @@
+docker run -d --mount type=bind,source=/workspaces/workdir/mockoon/demo.json,target=/data,readonly -p 3000:3000 mockoon/cli:latest --data data --port 3000
+
+
+docker run --rm curlimages/curl:7.86.0 -L -v http://mockoon.mockoon1.svc.cluster.local/users
+docker run --rm curlimages/curl:7.86.0 -L -v http://www.google.com
+
+kubectl run benighil --image=curlimages/curl:7.86.0 --restart=Never --rm -ti -- http://mockoon.mockoon1.svc.cluster.local/benighil
