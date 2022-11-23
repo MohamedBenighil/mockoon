@@ -13,17 +13,39 @@ spec:
       labels:
         app: mockoon
     spec:
+      initContainers:
+      - name: get-json-config-from-blob
+        image: nginx:alpine
+        command:
+        - "curl"
+        - "-o"
+        - "/temp/data.json"
+        - "https://vidizmomohamed.blob.core.windows.net/testcontainer/testedenred.json?sp=r&st=2022-11-23T15:40:19Z&se=2022-11-23T23:40:19Z&spr=https&sv=2021-06-08&sr=b&sig=njYB%2FUGQZQGM6kwhqrt6QfxRAwx5PRm2VZMMwGDjsxo%3D"
+        volumeMounts:
+        - name: data 
+          mountPath: "/temp"
       containers:
         - name: mockoon
           image: mockoon/cli:latest
           args: ["-d", "/data/data.json"]
-          ports:
-            - containerPort: 3000
           volumeMounts:
             - name: data
               mountPath: "/data"
+            - name: fileshare
+              mountPath: "/mohamed"
       volumes:
-        - name: data
-          configMap:
-            name: mockoon-data
+        - name: data  
+          emptyDir: {}
+        - name: fileshare
+          persistentVolumeClaim:
+            claimName: mockoon-pvc
       restartPolicy: Always
+
+
+    
+
+
+#Error: This file is not a valid OpenAPI specification (JSON or YAML v2.0.0 and v3.0.0) or Mockoon environment: EISDIR: illegal operation on a directory, read
+
+
+#
