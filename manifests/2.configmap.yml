@@ -1,0 +1,79 @@
+# kubectl -n mockoon1 create configmap mockoon --from-file=environment.json=testedenred.json  --dry-run=client -oyaml > 2.configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mockoon
+  namespace: mockoon1
+data:
+  environment.json: |-
+    {
+      "uuid": "60c80ca0-7b78-4eda-ac48-930e078c68cb",
+      "lastMigration": 24,
+      "name": "Testedenred",
+      "endpointPrefix": "",
+      "latency": 0,
+      "port": 3001,
+      "hostname": "0.0.0.0",
+      "routes": [
+        {
+          "uuid": "e0d99407-707e-42c0-bd9e-9a386c07bfaa",
+          "documentation": "",
+          "method": "get",
+          "endpoint": "testedenred",
+          "responses": [
+            {
+              "uuid": "74d3ce5b-c470-4281-95a6-7256595046dd",
+              "body": "{\n  \"name\": \"testedenred\"\n}",
+              "latency": 0,
+              "statusCode": 200,
+              "label": "",
+              "headers": [],
+              "bodyType": "FILE",
+              "filePath": "..\\responses\\testedenred2.json",
+              "databucketID": "",
+              "sendFileAsBody": true,
+              "rules": [],
+              "rulesOperator": "OR",
+              "disableTemplating": false,
+              "fallbackTo404": false,
+              "default": true
+            }
+          ],
+          "enabled": true,
+          "responseMode": null
+        }
+      ],
+      "proxyMode": false,
+      "proxyHost": "",
+      "proxyRemovePrefix": false,
+      "tlsOptions": {
+        "enabled": false,
+        "type": "CERT",
+        "pfxPath": "",
+        "certPath": "",
+        "keyPath": "",
+        "caPath": "",
+        "passphrase": ""
+      },
+      "cors": true,
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "proxyReqHeaders": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "proxyResHeaders": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "data": []
+    }
+
